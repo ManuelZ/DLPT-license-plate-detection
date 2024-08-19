@@ -23,22 +23,24 @@ YOLOv5 was used for training a PyTorch object detection model. Once the data has
 extremely simple proces thanks to the [YOLOv5 training script](https://github.com/ultralytics/yolov5/blob/master/train.py).
 It offers numerous features that simplify the model training process. 
 
-This is non-exhaustive list of some of the features I noticed while exploring the script.
+This is non-exhaustive list of some of the features I noticed while exploring the script:
 
-- Smart optimizer: Configures a SGD optimizer with default parameters (learning rate, momentum and weight decay) and
-3 parameter groups for different decay configurations for the model weights, biases and weights of the BatchNorm2d layers.
-- Learning Rate Scheduling: Uses cosine learning rate decay to adjust the learning rate across epochs.
-- Data Augmentation: Automated data augmentation techniques are applied by default to increase model generalization.
-- Exponential Moving Average of the model: Keeps track of a smoothed version of the model weights to help with the 
-model generalization.
-- Early Stopping: Monitors validation performance and automatically stops the training if no improvement is observed.
-- Gradient Accumulation: Supports gradient accumulation, which can help when training with batch sizes that are beyond 
-what's doable with the available GPU memory.
-- Fine-tuning: The script provides a way to freeze selected layers if desired, however, none are frozen by 
-default because the author has not observed that freezing layers improves performance. https://github.com/ultralytics/yolov5/issues/1264#issuecomment-721060334
-- Automatic Mixed Precision: Uses AMP for faster training with lower memory usage.
+- **Smart optimizer:** Configures an SGD optimizer with default parameters (learning rate, momentum and weight decay) and
+three parameter groups for different decay configurations for model weights, biases, and BatchNorm2d layer weights.
+- **Learning Rate Scheduling:** Applies cosine learning rate decay to adjust the learning rate across epochs.
+- **Data Augmentation:** Automatically applies data augmentation techniques by default to enhance model generalization.
+- **Exponential Moving Average:** Tracks a smoothed version of the model weights to help with generalization.
+- **Early Stopping:** Monitors validation performance and automatically stops the training if no improvement is observed.
+- **Gradient Accumulation:** Supports gradient accumulation, which can help when training with batch sizes that exceed 
+the available GPU memory.
+- **Fine-tuning:** Allows freezing selected layers if desired, however, none are frozen by default, because the author 
+[hasn't observed performance improvements from freezing layers](https://github.com/ultralytics/yolov5/issues/1264#issuecomment-721060334).
+- **Automatic Mixed Precision:** Uses AMP for faster training with lower memory usage.
 
-The hyperparameters mentioned above have default sensible values.
+The hyperparameters mentioned above have sensible default values.
+
+Understanding how YOLOv5 applies these techniques is valuable for training custom models other than YOLO.  Due to its 
+AGPL-3.0 License, YOLO cannot be used in closed-source products.
 
 ## Conclusions
 
