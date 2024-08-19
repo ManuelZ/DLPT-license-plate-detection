@@ -1,9 +1,52 @@
-# License plate detection project
-
+# Object Detection: License Plates
 
 This is the third project of the Opencv University course ["Deep Learning with PyTorch"](https://opencv.org/university/deep-learning-with-pytorch/).
+It focuses on using object detection to identify license plates within a provided dataset.
 
-Application of object detection to recognize license plates.
+## Introduction
 
+Object detection is a task in computer vision, where the objective is to identify and localize objects within an image 
+or video frame. This project focuses on detecting vehicle registration plates.
+
+## Data
+
+The project uses a dataset of vehicle license plate images, organized into training and validation sets with annotated 
+bounding boxes.
+
+The dataset consists of:
+- 5308 images in the train set
+- 386 images in the validation set 
+
+## YOLOv5
+
+YOLOv5 was used for training a PyTorch object detection model. Once the data has been obtained, training a model is an
+extremely simple proces thanks to the [YOLOv5 training script](https://github.com/ultralytics/yolov5/blob/master/train.py).
+It offers numerous features that simplify the model training process. 
+
+This is non-exhaustive list of some of the features I noticed while exploring the script.
+
+- Smart optimizer: Configures a SGD optimizer with default parameters (learning rate, momentum and weight decay) and
+3 parameter groups for different decay configurations for the model weights, biases and weights of the BatchNorm2d layers.
+- Learning Rate Scheduling: Uses cosine learning rate decay to adjust the learning rate across epochs.
+- Data Augmentation: Automated data augmentation techniques are applied by default to increase model generalization.
+- Exponential Moving Average of the model: Keeps track of a smoothed version of the model weights to help with the 
+model generalization.
+- Early Stopping: Monitors validation performance and automatically stops the training if no improvement is observed.
+- Gradient Accumulation: Supports gradient accumulation, which can help when training with batch sizes that are beyond 
+what's doable with the available GPU memory.
+- Fine-tuning: The script provides a way to freeze selected layers if desired, however, none are frozen by 
+default because the author has not observed that freezing layers improves performance. https://github.com/ultralytics/yolov5/issues/1264#issuecomment-721060334
+- Automatic Mixed Precision: Uses AMP for faster training with lower memory usage.
+
+The hyperparameters mentioned above have default sensible values.
+
+## Conclusions
+
+This solution shows a starting point that could be used in the task of automatic recognition of license plate numbers.
+Without spending much time tuning hyperparameters, a base model was trained in Google Colab for only 5 epochs using
+5308 images in the train set and 386 were used to evaluate the out-of-sample model performance. 
+
+At this stage, the model can be deployed to see how it performs in real-world scenarios. If it doesn't perform as 
+expected, various approaches can be explored to improve it, such as addressing overfitting or underfitting issues.
 
 See the [notebook](Project3_object_detection.ipynb).
