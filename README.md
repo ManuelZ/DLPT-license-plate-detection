@@ -17,10 +17,11 @@ The dataset consists of:
 - 5308 images in the train set
 - 386 images in the validation set 
 
-## YOLOv5
+## The method used
 
-YOLOv5 was used for training a PyTorch object detection model. Once the data has been obtained, training a model is an
-extremely simple proces thanks to the [YOLOv5 training script](https://github.com/ultralytics/yolov5/blob/master/train.py).
+YOLOv5 was used to fine-tune a yolov5s model. The model was kept small with the expectation that it would perform 
+adequately, allowing for the use of smaller hardware in future implementations in an edge device.
+Once the data has been obtained, training a model is an extremely simple proces thanks to the [YOLOv5 training script](https://github.com/ultralytics/yolov5/blob/master/train.py).
 It offers numerous features that simplify the model training process. 
 
 This is non-exhaustive list of some of the features I noticed while exploring the script:
